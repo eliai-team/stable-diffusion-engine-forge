@@ -42,11 +42,7 @@ FROM python:3.10.9-slim as build_final_image
 
 ARG SHA=5ef669de080814067961f28357256e8fe27544f4
 
-ENV DEBIAN_FRONTEND=noninteractive \
-    PIP_PREFER_BINARY=1 \
-    LD_PRELOAD=libtcmalloc.so \
-    ROOT=stable-diffusion-webui \
-    PYTHONUNBUFFERED=1
+
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
@@ -57,9 +53,15 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN apt-get update && \
     apt install -y \
-    sudo fonts-dejavu-core rsync git jq moreutils aria2 wget libgoogle-perftools-dev procps libgl1 libglib2.0-0 lsof && \
+    google-perftools sudo fonts-dejavu-core rsync git jq moreutils aria2 wget libgoogle-perftools-dev procps libgl1 libglib2.0-0 lsof && \
     apt-get autoremove -y && rm -rf /var/lib/apt/lists/* && apt-get clean -y
 
+ENV DEBIAN_FRONTEND=noninteractive \
+    PIP_PREFER_BINARY=1 \
+    LD_PRELOAD=libtcmalloc.so \
+    ROOT=stable-diffusion-webui \
+    PYTHONUNBUFFERED=1
+    
 # RUN --mount=type=cache,target=/cache --mount=type=cache,target=/root/.cache/pip \
 #     pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 

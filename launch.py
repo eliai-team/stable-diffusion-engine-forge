@@ -43,8 +43,8 @@ def main():
 
     if args.forge_ref_a1111_home:
         launch_utils.configure_forge_reference_checkout(args.forge_ref_a1111_home)
-
-    start()
+    if not args.building:
+        start()
 
 
 if __name__ == "__main__":

@@ -80,7 +80,7 @@ RUN --mount=type=cache,target=/root/.cache/pip \
     pip install -r ${ROOT}/repositories/CodeFormer/requirements.txt
 
 # Install Python dependencies (Worker Template)
-COPY builder/requirements.txt /requirements.txt
+COPY ../requirements_versions.txt /requirements.txt
 RUN --mount=type=cache,target=/root/.cache/pip \
     pip install httpx==0.24.1 && \
     pip install --upgrade pip && \
@@ -89,8 +89,8 @@ RUN --mount=type=cache,target=/root/.cache/pip \
 
 
 COPY builder/cache.py /stable-diffusion-webui/cache.py
-COPY builder/controlnet_annotation/ /stable-diffusion-webui/controlnet_annotation/
-COPY builder/huggingface/ /root/.cache/huggingface/
+# COPY builder/controlnet_annotation/ /stable-diffusion-webui/controlnet_annotation/
+# COPY builder/huggingface/ /root/.cache/huggingface/
 COPY builder/upscale/ /stable-diffusion-webui/models/
 COPY builder/checkpoint/ /stable-diffusion-webui/models/Stable-diffusion/
 

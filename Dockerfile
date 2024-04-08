@@ -64,12 +64,15 @@ RUN apt-get update && \
 #     pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 
 RUN  useradd -m admin && echo "admin:admin" |  chpasswd &&  usermod -aG sudo  admin
+COPY docker/install.sh /home/admin/install.sh
+RUN sudo chmod +x /home/admin/install.sh
+
 USER admin
-workdir ~/
+workdir /home/admin/
 RUN pwd
 
-RUN git clone https://github.com/eliai-team/stable-diffusion-engine-forge.git stable-diffusion-webui && \
-    cd stable-diffusion-webui 
+RUN git clone https://github.com/eliai-team/stable-diffusion-engine-forge.git stable-diffusion-webui 
+    # cd stable-diffusion-webui 
     # git reset --hard ${SHA}
 #&& \ pip install -r requirements_versions.txt
 
@@ -98,9 +101,8 @@ COPY docker/builder/cache.py stable-diffusion-webui/cache.py
 COPY docker/builder/upscale/ stable-diffusion-webui/models/
 COPY docker/builder/checkpoint/ stable-diffusion-webui/models/Stable-diffusion/
 
-COPY docker/install.sh install.sh
-RUN sudo chmod +x install.sh 
-RUN install.sh
+
+RUN /home/admin/install.sh
 
 
 # RUN sed -i 's/from torchvision.transforms.functional_tensor import rgb_to_grayscale/from torchvision.transforms.functional import rgb_to_grayscale/' /usr/local/lib/python3.10/site-packages/basicsr/data/degradations.py

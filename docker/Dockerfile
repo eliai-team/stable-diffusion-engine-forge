@@ -27,7 +27,7 @@ RUN . /clone.sh BLIP https://github.com/salesforce/BLIP.git 48211a1594f1321b00f1
 # RUN . /clone_extensions.sh eliai-engine-sd-webui-ext https://github.com/minhnhat0709/eliai-engine-sd-webui-ext a5b7b14dc0ae46e28337f6027fe600b3a43abcf6 && \
 # RUN    . /clone_extensions.sh sd-webui-controlnet https://github.com/Mikubill/sd-webui-controlnet a13bd2febe4fae1184b548504957d19a65425a89
 
-RUN . /download_controlnet_model.sh
+# RUN . /download_controlnet_model.sh
 
 
 # RUN apk add --no-cache wget && \

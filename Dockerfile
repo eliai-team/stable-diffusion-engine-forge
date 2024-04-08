@@ -64,7 +64,7 @@ RUN --mount=type=cache,target=/cache --mount=type=cache,target=/root/.cache/pip 
     pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 
 RUN --mount=type=cache,target=/root/.cache/pip \
-    git clone https://github.com/eliai-team/stable-diffusion-engine-forge.git stable-diffusion-webui && \
+    git clone https://github.com/eliai-team/stable-diffusion-engine-forge.git /stable-diffusion-webui && \
     cd stable-diffusion-webui 
     # git reset --hard ${SHA}
 #&& \ pip install -r requirements_versions.txt
@@ -88,11 +88,11 @@ RUN --mount=type=cache,target=/root/.cache/pip \
     rm /requirements.txt
 
 
-COPY builder/cache.py /stable-diffusion-webui/cache.py
+COPY docker/builder/cache.py /stable-diffusion-webui/cache.py
 # COPY builder/controlnet_annotation/ /stable-diffusion-webui/controlnet_annotation/
 # COPY builder/huggingface/ /root/.cache/huggingface/
-COPY builder/upscale/ /stable-diffusion-webui/models/
-COPY builder/checkpoint/ /stable-diffusion-webui/models/Stable-diffusion/
+COPY docker/builder/upscale/ /stable-diffusion-webui/models/
+COPY docker/builder/checkpoint/ /stable-diffusion-webui/models/Stable-diffusion/
 
 RUN sed -i 's/from torchvision.transforms.functional_tensor import rgb_to_grayscale/from torchvision.transforms.functional import rgb_to_grayscale/' /usr/local/lib/python3.10/site-packages/basicsr/data/degradations.py
 RUN cd /stable-diffusion-webui && python cache.py --use-cpu=all --ckpt /stable-diffusion-webui/models/Stable-diffusion/realisticVisionV51_v30VAE.safetensors

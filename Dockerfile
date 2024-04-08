@@ -3,9 +3,9 @@
 # ---------------------------------------------------------------------------- #
 FROM alpine/git:2.36.2 as download
 
-COPY builder/clone.sh /clone.sh
-COPY builder/clone_extensions.sh /clone_extensions.sh
-COPY builder/download_controlnet_model.sh /download_controlnet_model.sh
+COPY docker/builder/clone.sh /clone.sh
+COPY docker/builder/clone_extensions.sh /clone_extensions.sh
+COPY docker/builder/download_controlnet_model.sh /download_controlnet_model.sh
 
 RUN apk --no-cache add aria2
 

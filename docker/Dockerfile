@@ -24,7 +24,7 @@ RUN . /clone.sh BLIP https://github.com/salesforce/BLIP.git 48211a1594f1321b00f1
     . /clone.sh clip-interrogator https://github.com/pharmapsychotic/clip-interrogator 2486589f24165c8e3b303f84e9dbbea318df83e8 && \
     . /clone.sh generative-models https://github.com/Stability-AI/generative-models 45c443b316737a4ab6e40413d7794a7f5657c19f
 
-RUN . /clone_extensions.sh eliai-engine-sd-webui-ext https://github.com/minhnhat0709/eliai-engine-sd-webui-ext a5b7b14dc0ae46e28337f6027fe600b3a43abcf6 && \
+# RUN . /clone_extensions.sh eliai-engine-sd-webui-ext https://github.com/minhnhat0709/eliai-engine-sd-webui-ext a5b7b14dc0ae46e28337f6027fe600b3a43abcf6 && \
 # RUN    . /clone_extensions.sh sd-webui-controlnet https://github.com/Mikubill/sd-webui-controlnet a13bd2febe4fae1184b548504957d19a65425a89
 
 RUN . /download_controlnet_model.sh

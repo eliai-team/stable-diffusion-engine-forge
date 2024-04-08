@@ -104,6 +104,6 @@ RUN apt-get autoremove -y && \
 
 # ENV SUPABASE_ENDPOINT=https://rtfoijxfymuizzxzbnld.supabase.co SUPABASE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ0Zm9panhmeW11aXp6eHpibmxkIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTY1Nzc4MTQsImV4cCI6MjAxMjE1MzgxNH0.ChbqzCyTnUkrZ8VMie8y9fpu0xXB07fdSxVrNF9_psE AWS_ACCESS_KEY_ID=445b3a76828604585e2f38f49b39188b AWS_SECRET_ACCESS_KEY=9d5f008e8be8a9990a6cff7c6a1c78fc6498787a022cb0ea759cbd0af30c1848 MAX_MEMORY_CAPACITY=20
 # Set permissions and specify the command to run
-COPY start.sh /start.sh
+COPY docker/start.sh /start.sh
 RUN chmod +x /start.sh
 CMD /start.sh

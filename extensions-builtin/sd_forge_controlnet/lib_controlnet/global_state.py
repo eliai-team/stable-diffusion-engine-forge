@@ -2,13 +2,27 @@ import os.path
 import stat
 from collections import OrderedDict
 
+import requests
+
 from modules import shared, sd_models
 from lib_controlnet.enums import StableDiffusionVersion
 from modules_forge.shared import controlnet_dir, supported_preprocessors
 
 
 CN_MODEL_EXTS = [".pt", ".pth", ".ckpt", ".safetensors", ".bin", ".patch"]
-
+CN_DOWNLOAD_LINK = [
+    "https://huggingface.co/ckpt/ControlNet-v1-1/resolve/main/control_v11p_sd15_canny_fp16.safetensors",
+    "https://huggingface.co/ckpt/ControlNet-v1-1/resolve/main/control_v11p_sd15_depth_fp16.safetensors"
+    "https://huggingface.co/ckpt/ControlNet-v1-1/resolve/main/control_v11p_sd15_inpaint_fp16.safetensors",
+    "https://huggingface.co/ckpt/ControlNet-v1-1/resolve/main/control_v11p_sd15_lineart_fp16.safetensors",
+    "https://huggingface.co/ckpt/ControlNet-v1-1/resolve/main/control_v11p_sd15_mlsd_fp16.safetensors",
+    "https://huggingface.co/ckpt/ControlNet-v1-1/resolve/main/control_v11p_sd15_normalbae_fp16.safetensors",
+    "https://huggingface.co/ckpt/ControlNet-v1-1/resolve/main/control_v11p_sd15_openpose_fp16.safetensors", 
+    "https://huggingface.co/ckpt/ControlNet-v1-1/resolve/main/control_v11p_sd15_scribble_fp16.safetensors",
+    "https://huggingface.co/ckpt/ControlNet-v1-1/resolve/main/control_v11p_sd15_seg_fp16.safetensors",
+    "https://huggingface.co/ckpt/ControlNet-v1-1/resolve/main/control_v11p_sd15_softedge_fp16.safetensors", 
+    "https://huggingface.co/ckpt/ControlNet-v1-1/resolve/main/control_v11f1e_sd15_tile_fp16.safetensors"
+]
 
 def traverse_all_files(curr_path, model_list):
     f_list = [
@@ -74,7 +88,23 @@ def get_all_controlnet_names():
 
 def get_controlnet_filename(controlnet_name):
     print(controlnet_filename_dict)
-    controlnet_filename = [x for x in controlnet_names if controlnet_name in x][0]
+    controlnet_filename = [x for x in controlnet_names if controlnet_name in x]
+    controlnet_filename = controlnet_filename[0] if controlnet_filename else None
+
+    if controlnet_filename == None:
+        download_link = [link for link in CN_DOWNLOAD_LINK if controlnet_name in link]
+        download_link = download_link[0] if download_link else None
+        if download_link:
+          file_path = os.path.join(controlnet_dir, download_link.split("/")[-1])
+          print(download_link)
+          print(file_path)
+          response = requests.get(download_link)
+          if response.status_code == 200:
+              with open(file_path, 'wb') as file:
+                  file.write(response.content)
+              update_controlnet_filenames()
+              controlnet_filename = [x for x in controlnet_names if controlnet_name in x][0]
+
     return controlnet_filename_dict[controlnet_filename]
 
 

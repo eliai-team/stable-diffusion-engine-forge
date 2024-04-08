@@ -54,6 +54,7 @@ controlnet_names = ['None']
 
 
 def get_preprocessor(name):
+    print(f"preprocessor name: {name}")
     return supported_preprocessors.get(name, None)
 
 
@@ -72,7 +73,9 @@ def get_all_controlnet_names():
 
 
 def get_controlnet_filename(controlnet_name):
-    return controlnet_filename_dict[controlnet_name]
+    print(controlnet_filename_dict)
+    controlnet_filename = [x for x in controlnet_names if controlnet_name in x][0]
+    return controlnet_filename_dict[controlnet_filename]
 
 
 def get_all_preprocessor_names():

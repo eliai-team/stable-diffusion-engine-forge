@@ -1,7 +1,7 @@
-cd ~/stable-diffusion-webui
+cd /stable-diffusion-webui
 
-# python -c "from modules import launch_utils; launch_utils.prepare_environment();"
-./webui.sh --nowebui --api --xformers --port 5456 --skip-torch-cuda-test --building
+python -c "from modules import launch_utils; launch_utils.prepare_environment();" --skip-torch-cuda-test
+# ./webui.sh --nowebui --api --xformers --port 5456 --skip-torch-cuda-test --building
 
 # while true; do
 # 	if ! lsof -i:5456 -sTCP:LISTEN > /dev/null

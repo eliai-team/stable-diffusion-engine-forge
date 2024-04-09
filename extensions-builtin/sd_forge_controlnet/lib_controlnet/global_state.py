@@ -12,7 +12,7 @@ from modules_forge.shared import controlnet_dir, supported_preprocessors
 CN_MODEL_EXTS = [".pt", ".pth", ".ckpt", ".safetensors", ".bin", ".patch"]
 CN_DOWNLOAD_LINK = [
     "https://huggingface.co/ckpt/ControlNet-v1-1/resolve/main/control_v11p_sd15_canny_fp16.safetensors",
-    "https://huggingface.co/ckpt/ControlNet-v1-1/resolve/main/control_v11p_sd15_depth_fp16.safetensors"
+    "https://huggingface.co/ckpt/ControlNet-v1-1/resolve/main/control_v11p_sd15_depth_fp16.safetensors",
     "https://huggingface.co/ckpt/ControlNet-v1-1/resolve/main/control_v11p_sd15_inpaint_fp16.safetensors",
     "https://huggingface.co/ckpt/ControlNet-v1-1/resolve/main/control_v11p_sd15_lineart_fp16.safetensors",
     "https://huggingface.co/ckpt/ControlNet-v1-1/resolve/main/control_v11p_sd15_mlsd_fp16.safetensors",
@@ -69,6 +69,7 @@ controlnet_names = ['None']
 
 def get_preprocessor(name):
     print(f"preprocessor name: {name}")
+    print(supported_preprocessors)
     return supported_preprocessors.get(name, None)
 
 

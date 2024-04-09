@@ -30,3 +30,12 @@ transformers==4.30.2
 httpx==0.24.1
 basicsr==1.4.2
 diffusers==0.25.0
+
+
+scipy
+open_clip_torch
+supabase
+boto3
+onnxruntime
+onnx
+redis

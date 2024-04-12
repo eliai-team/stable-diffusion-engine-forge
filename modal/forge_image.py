@@ -21,6 +21,7 @@ a1111_image = (
         "cd /webui && . venv/bin/activate && "
         + "python -c 'from modules import launch_utils; launch_utils.prepare_environment()' --xformers",
         gpu="t4",
+        # force_build=True
     )
     .run_commands(
         "cd /webui && . venv/bin/activate && "

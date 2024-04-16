@@ -73,7 +73,8 @@ ENV DEBIAN_FRONTEND=noninteractive \
 # RUN pwd
 workdir /
 
-RUN git clone https://github.com/eliai-team/stable-diffusion-engine-forge.git /stable-diffusion-webui 
+RUN git clone --depth 1 --branch v1.7.0 https://github.com/AUTOMATIC1111/stable-diffusion-webui /stable-diffusion-webui && \
+    cd /stable-diffusion-webui/extensions && git clone https://github.com/Mikubill/sd-webui-controlnet
     # cd stable-diffusion-webui 
     # git reset --hard ${SHA}
 #&& \ pip install -r requirements_versions.txt
@@ -102,6 +103,7 @@ COPY docker/builder/cache.py /stable-diffusion-webui/cache.py
 # COPY builder/controlnet_annotation/ /stable-diffusion-webui/controlnet_annotation/
 # COPY builder/huggingface/ /root/.cache/huggingface/
 COPY docker/builder/upscale/ /stable-diffusion-webui/models/
+COPY docker/builder/Lora/ /stable-diffusion-webui/models/Lora
 COPY docker/builder/checkpoint/ /stable-diffusion-webui/models/Stable-diffusion/
 
 COPY docker/install.sh /install.sh

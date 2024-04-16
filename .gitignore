@@ -2,6 +2,7 @@ __pycache__
 *.ckpt
 *.safetensors
 *.pth
+*.pt
 /ESRGAN/*
 /SwinIR/*
 /repositories
@@ -43,3 +44,4 @@ notification.mp3
 coverage.xml
 **/tests/**/expectations
 /docker/builder/checkpoint
+/docker/builder/controlnet_annotation/*

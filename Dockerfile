@@ -94,7 +94,7 @@ RUN git clone --depth 1 --branch v1.7.0 https://github.com/AUTOMATIC1111/stable-
 RUN --mount=type=cache,target=/root/.cache/pip \
     pip install boto3 && \
     pip install redis && \
-    pip install supabase && \
+    pip install supabase 
 #     pip install --upgrade pip && \
 #     pip install --upgrade -r /requirements.txt --no-cache-dir && \
 #     rm /requirements.txt

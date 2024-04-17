@@ -26,7 +26,7 @@ export SUPABASE_ENDPOINT=https://rtfoijxfymuizzxzbnld.supabase.co SUPABASE_KEY=e
 
 cd /stable-diffusion-webui
 
-git clone https://github.com/minhnhat0709/eliai-engine-sd-webui-ext extensions/eliai-engine-sd-webui-ext
+git clone --depth 1 --branch auto-scale-engine https://github.com/minhnhat0709/eliai-engine-sd-webui-ext extensions/eliai-engine-sd-webui-ext
 cd extensions/eliai-engine-sd-webui-ext
 git checkout auto-scale-engine
 cd ../..

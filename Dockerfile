@@ -91,8 +91,10 @@ RUN git clone --depth 1 --branch v1.7.0 https://github.com/AUTOMATIC1111/stable-
 
 # Install Python dependencies (Worker Template)
 # COPY requirements_versions.txt /requirements.txt
-# RUN --mount=type=cache,target=/root/.cache/pip \
-#     pip install httpx==0.24.1 && \
+RUN --mount=type=cache,target=/root/.cache/pip \
+    pip install boto3 && \
+    pip install redis && \
+    pip install supabase && \
 #     pip install --upgrade pip && \
 #     pip install --upgrade -r /requirements.txt --no-cache-dir && \
 #     rm /requirements.txt

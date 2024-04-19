@@ -32,6 +32,7 @@ git checkout auto-scale-engine
 cd ../..
 
 # systemctl start run_engines.service
+/auto_destroy.sh &
 
 while true; do
 	if ! lsof -i:5001 -sTCP:LISTEN > /dev/null

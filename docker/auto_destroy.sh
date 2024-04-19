@@ -15,12 +15,12 @@ while true; do
     # Calculate the time difference in seconds
     time_difference=$((current_time - file_modification_time))
 
-    # Check if the file hasn't been modified in the last 60 seconds and make sure it's not shut down immediately
-    if [ "$time_difference" -ge 60 ]; then
-        echo "The file has not been modified in the last 60 seconds."
+    # Check if the file hasn't been modified in the last 180 seconds and make sure it's not shut down immediately
+    if [ "$time_difference" -ge 180 ]; then
+        echo "The file has not been modified in the last 180 seconds."
         /vast destroy instance $CONTAINER_ID --api-key $CONTAINER_API_KEY
     else
-        echo "The file has been modified in the last 60 seconds."
+        echo "The file has been modified in the last 180 seconds."
     fi
   else
     echo "File does not exist."

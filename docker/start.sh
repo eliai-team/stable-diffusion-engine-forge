@@ -31,4 +31,5 @@ cd extensions/eliai-engine-sd-webui-ext
 git checkout auto-scale-engine
 cd ../..
 
-systemctl start run_engines.service
+# systemctl start run_engines.service
+/run_engines.sh

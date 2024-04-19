@@ -25,7 +25,7 @@ a1111_image = (
         "cd /webui && . venv/bin/activate && "
         + "python -c 'from modules import launch_utils; launch_utils.prepare_environment()' --xformers",
         gpu="t4",
-        force_build=True
+        # force_build=True
     )
     .run_commands(
         "cd /webui && . venv/bin/activate && "
@@ -60,7 +60,7 @@ secrets = Secret.from_dict(env_variables)
     memory=3072,
     timeout=3600,
     concurrency_limit=5,
-    container_idle_timeout=15,
+    container_idle_timeout=60,
     secrets=[Secret.from_name("engine-secret")]
     # enable_memory_snapshot=True
     # Allows 100 concurrent requests per container.

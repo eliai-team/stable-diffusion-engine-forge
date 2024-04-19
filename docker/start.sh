@@ -32,4 +32,17 @@ git checkout auto-scale-engine
 cd ../..
 
 # systemctl start run_engines.service
-/run_engines.sh
+
+while true; do
+	if ! lsof -i:5001 -sTCP:LISTEN > /dev/null
+	then
+    		python ./webui.py --nowebui --api --xformers --port 5001 --listen > /engine_1.txt 2>&1 &
+	fi
+
+	if ! lsof -i:5002 -sTCP:LISTEN > /dev/null
+	then
+    		python ./webui.py --nowebui --api --xformers --port 5002 --listen > /engine_2.txt 2>&1 &
+	fi
+	
+	sleep 1m
+done

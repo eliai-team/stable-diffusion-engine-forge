@@ -1,0 +1,11 @@
+[Unit]
+Description=Run engine
+
+[Service]
+User=user
+ExecStart=/run_engines.sh
+Restart=always
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
